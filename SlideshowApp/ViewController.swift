@@ -18,6 +18,18 @@ class ViewController: UIViewController {
   @IBOutlet weak var nextButton: UIButton!
   @IBOutlet weak var backButton: UIButton!
   
+  //タップジェスチャ
+  @IBAction func onTapImage(_ sender: Any) {
+    //セグエを利用して画面を遷移
+    self.performSegue(withIdentifier: "result", sender: self.photonumber)
+  }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let resultViewController:resultViewController = segue.destination as! resultViewController
+    
+    resultViewController.photonumber = self.photonumber
+    
+  }
+  
   
   //メイン画像
   let photos = ["summer_01.png","summer_02.png","summer_03.png"]
@@ -94,6 +106,8 @@ class ViewController: UIViewController {
       backButton.isEnabled = true
     }
   }
+  
+  @IBAction func unwind(_ segue:UIStoryboardSegue){}
   
 
 
